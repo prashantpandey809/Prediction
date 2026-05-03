@@ -1,0 +1,31 @@
+admission_date,disease_type,medicine_used,medicine_quantity,hospital_area
+2024-01-01,Heart Disease,Aspirin,50,ICU
+2024-01-01,Diabetes,Insulin,100,General Ward
+2024-01-02,Respiratory Infection,Amoxicillin,75,OPD
+2024-01-02,Hypertension,Amlodipine,40,General Ward
+2024-01-03,Kidney Disease,Furosemide,50,ICU
+2024-01-03,Heart Disease,Lisinopril,35,ICU
+2024-01-04,Diabetes,Metformin,80,General Ward
+2024-01-04,Respiratory Infection,Salbutamol,60,OPD
+2024-01-05,Heart Disease,Atorvastatin,45,General Ward
+2024-01-05,Hypertension,Atenolol,50,General Ward
+2024-01-06,Diabetes,Insulin,110,Pediatrics
+2024-01-06,Kidney Disease,Potassium Supplement,30,ICU
+2024-01-07,Respiratory Infection,Omeprazole,55,OPD
+2024-01-07,Heart Disease,Aspirin,60,General Ward
+2024-01-08,Diabetes,Glipizide,40,General Ward
+2024-01-08,Hypertension,Amlodipine,45,OPD
+2024-01-09,Heart Disease,Lisinopril,50,ICU
+2024-01-09,Respiratory Infection,Amoxicillin,70,General Ward
+2024-01-10,Diabetes,Metformin,90,OPD
+2024-01-10,Kidney Disease,Furosemide,55,ICU
+2024-01-11,Heart Disease,Atorvastatin,55,General Ward
+2024-01-11,Hypertension,Atenolol,48,OPD
+2024-01-12,Respiratory Infection,Salbutamol,65,Pediatrics
+2024-01-12,Diabetes,Insulin,120,General Ward
+2024-01-13,Heart Disease,Aspirin,58,ICU
+2024-01-13,Kidney Disease,Potassium Supplement,35,General Ward
+2024-01-14,Diabetes,Metformin,85,OPD
+2024-01-14,Respiratory Infection,Amoxicillin,72,General Ward
+2024-01-15,Hypertension,Amlodipine,50,ICU
+2024-01-15,Heart Disease,Lisinopril,52,General Ward

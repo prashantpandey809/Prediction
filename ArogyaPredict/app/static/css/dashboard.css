@@ -1,0 +1,622 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --danger-color: #dc2626;
+    --light-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styling */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    margin-bottom: 15px;
+}
+
+.timestamp {
+    opacity: 0.9;
+    font-size: 0.9em;
+}
+
+/* Stats Section */
+.stats-section {
+    margin-bottom: 40px;
+}
+
+.stats-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    padding-left: 5px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-card.today {
+    border-left-color: var(--primary-color);
+}
+
+.stat-card.month {
+    border-left-color: var(--secondary-color);
+}
+
+.stat-card.critical {
+    border-left-color: var(--danger-color);
+}
+
+.stat-card.warning {
+    border-left-color: var(--warning-color);
+}
+
+.stat-icon {
+    font-size: 3em;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-content h3 {
+    font-size: 0.95em;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.stat-range {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-top: 8px;
+}
+
+/* Input Section */
+.input-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+}
+
+.input-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.input-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-size: 0.95em;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Styling */
+.btn-predict,
+.btn-recommend {
+    grid-column: 1 / -1;
+    padding: 14px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn-predict:hover,
+.btn-recommend:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Results Section */
+.results-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+}
+
+.results-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.result-box p:first-child {
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.result-box h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+.result-range {
+    opacity: 0.85;
+    font-size: 0.95em;
+}
+
+.result-recommendations {
+    background: #f0f9ff;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Charts Section */
+.charts-section {
+    margin-bottom: 40px;
+}
+
+.charts-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    padding-left: 5px;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.chart-container h3 {
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    font-size: 1.1em;
+}
+
+/* Medicine Section */
+.medicine-section {
+    margin-bottom: 40px;
+}
+
+.medicine-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    padding-left: 5px;
+}
+
+.medicine-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.medicine-filters input,
+.medicine-filters select {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.medicine-filters input:focus,
+.medicine-filters select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.medicine-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.medicine-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.medicine-card.disease-Heart\ Disease {
+    border-top-color: #ef4444;
+}
+
+.medicine-card.disease-Diabetes {
+    border-top-color: #3b82f6;
+}
+
+.medicine-card.disease-Respiratory\ Infection {
+    border-top-color: #f97316;
+}
+
+.medicine-card.disease-Hypertension {
+    border-top-color: #8b5cf6;
+}
+
+.medicine-card.disease-Cancer {
+    border-top-color: #ec4899;
+}
+
+.medicine-card.disease-Kidney\ Disease {
+    border-top-color: #14b8a6;
+}
+
+.medicine-card.disease-Gastroenteritis {
+    border-top-color: #eab308;
+}
+
+.medicine-card.disease-Fractures {
+    border-top-color: #6366f1;
+}
+
+.medicine-card.disease-Stroke {
+    border-top-color: #f59e0b;
+}
+
+.medicine-disease {
+    font-size: 0.85em;
+    color: white;
+    background: var(--primary-color);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.medicine-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.medicine-details {
+    font-size: 0.9em;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.medicine-detail-item {
+    margin-bottom: 10px;
+}
+
+.medicine-detail-label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Recommendations Section */
+.recommendations-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+}
+
+.recommendations-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.recommendation-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.rec-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.rec-input label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.rec-input input,
+.rec-input select {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.rec-input input:focus,
+.rec-input select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-recommend {
+    grid-column: 1 / -1;
+}
+
+.recommendation-card {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.recommendation-card.critical {
+    border-left-color: var(--danger-color);
+    background: #fef2f2;
+}
+
+.recommendation-card.high {
+    border-left-color: var(--warning-color);
+    background: #fffbeb;
+}
+
+.recommendation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.medicine-name-rec {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.05em;
+}
+
+.criticality-badge {
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--primary-color);
+    color: white;
+}
+
+.criticality-badge.critical {
+    background: var(--danger-color);
+}
+
+.criticality-badge.high {
+    background: var(--warning-color);
+}
+
+.rec-details {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+.rec-detail {
+    margin: 5px 0;
+}
+
+.rec-label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-light);
+    border-top: 2px solid var(--border-color);
+    margin-top: 50px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-form {
+        grid-template-columns: 1fr;
+    }
+
+    .medicine-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .medicine-filters {
+        flex-direction: column;
+    }
+
+    .recommendation-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading and Status */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(37, 99, 235, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.text-success {
+    color: var(--success-color);
+}
+
+.text-danger {
+    color: var(--danger-color);
+}
+
+.text-warning {
+    color: var(--warning-color);
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}

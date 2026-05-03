@@ -1,0 +1,40 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+
+#Environment Variable
+.env
+
+#Python
+__pycache__/
+*.pyc
+*.pyc
+*.pyo
+*.pyd
+
+#Virtual environment
+venv/
+env/
+ENV/
+
+# VS Code
+.vscode
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+#Logs
+.logs
+
+#Node
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build Files
+dist/
+build/
+*.egg-info
+
+#Cache
+.cache

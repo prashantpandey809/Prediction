@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArogyaPredict - Hospital Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🏥 ArogyaPredict Dashboard</h1>
+                <p>Hospital Patient Inflow & Medicine Stock Management System</p>
+                <div class="timestamp">Last updated: <span id="timestamp"></span></div>
+            </div>
+        </header>
+
+        <!-- Quick Stats Section -->
+        <section class="stats-section">
+            <h2>📊 Today's Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card today">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3>Today's Predicted Patients</h3>
+                        <p class="stat-value" id="todayPatients">--</p>
+                        <p class="stat-range" id="todayRange">Range: --</p>
+                    </div>
+                </div>
+
+                <div class="stat-card month">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3>This Month (Est.)</h3>
+                        <p class="stat-value" id="monthPatients">--</p>
+                        <p class="stat-range">Average/Day: <span id="avgDaily">--</span></p>
+                    </div>
+                </div>
+
+                <div class="stat-card critical">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-content">
+                        <h3>Critical Medicine Items</h3>
+                        <p class="stat-value" id="criticalMeds">0</p>
+                        <p class="stat-range">Stock level attention needed</p>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-content">
+                        <h3>Expiring Soon</h3>
+                        <p class="stat-value" id="expiringSoon">0</p>
+                        <p class="stat-range">Within 30 days</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prediction Input Section -->
+        <section class="input-section">
+            <h2>🔮 Make a Prediction</h2>
+            <div class="input-form">
+                <div class="form-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" id="temperature" value="28" min="-50" max="60" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Humidity (%)</label>
+                    <input type="number" id="humidity" value="65" min="0" max="100" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Air Quality Index</label>
+                    <input type="number" id="aqi" value="150" min="0" step="1">
+                </div>
+                <div class="form-group">
+                    <label>Disease Type</label>
+                    <select id="disease_type">
+                        <option>Heart Disease</option>
+                        <option>Diabetes</option>
+                        <option>Respiratory Infection</option>
+                        <option>Hypertension</option>
+                        <option>Cancer</option>
+                        <option>Kidney Disease</option>
+                        <option>Gastroenteritis</option>
+                        <option>Fractures</option>
+                        <option>Stroke</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Weather Condition</label>
+                    <select id="weather_condition">
+                        <option>Haze</option>
+                        <option>Clear</option>
+                        <option>Smoke</option>
+                        <option>Rain</option>
+                        <option>Cloudy</option>
+                        <option>Sunny</option>
+                        <option>Rainy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Is Holiday?</label>
+                    <select id="is_holiday">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Holiday Name</label>
+                    <select id="holiday_name">
+                        <option>None</option>
+                        <option>New Year's Day</option>
+                        <option>Lohri</option>
+                        <option>Makar Sankranti</option>
+                        <option>Pongal</option>
+                        <option>Holi</option>
+                        <option>Diwali</option>
+                        <option>Christmas</option>
+                    </select>
+                </div>
+                <button class="btn-predict" onclick="makePrediction()">Predict Patient Count</button>
+            </div>
+        </section>
+
+        <!-- Prediction Results -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <h2>🎯 Prediction Results</h2>
+            <div class="results-container">
+                <div class="result-box">
+                    <p>Predicted Patient Count</p>
+                    <h1 id="predictionResult">--</h1>
+                    <p class="result-range" id="predictionRange">Range: --</p>
+                </div>
+                <div class="result-recommendations" id="recommendationsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <h2>📈 Analytics</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Patient Distribution 30-Day Forecast</h3>
+                    <canvas id="patientChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Disease Type Distribution</h3>
+                    <canvas id="diseaseChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medicine Database Section -->
+        <section class="medicine-section">
+            <h2>💊 Comprehensive Medicine Database</h2>
+            
+            <div class="medicine-filters">
+                <input type="text" id="medicineSearch" placeholder="🔍 Search medicines or disease...">
+                <select id="diseaseFilter" onchange="filterMedicines()">
+                    <option value="">All Diseases</option>
+                    <option value="Heart Disease">Heart Disease</option>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Respiratory Infection">Respiratory Infection</option>
+                    <option value="Hypertension">Hypertension</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Kidney Disease">Kidney Disease</option>
+                    <option value="Gastroenteritis">Gastroenteritis</option>
+                    <option value="Fractures">Fractures</option>
+                    <option value="Stroke">Stroke</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div id="medicineContainer" class="medicine-grid">
+                <!-- Medicine cards will be populated here -->
+            </div>
+        </section>
+
+        <!-- Medicine Recommendations Section -->
+        <section class="recommendations-section">
+            <h2>⚕️ Stock Recommendations Based on Prediction</h2>
+            <div class="recommendation-form">
+                <div class="rec-input">
+                    <label>Enter Predicted Patient Count:</label>
+                    <input type="number" id="patientCountRec" placeholder="e.g., 15" min="0" value="10">
+                </div>
+                <div class="rec-input">
+                    <label>Select Disease:</label>
+                    <select id="diseaseRec">
+                        <option>Heart Disease</option>
+                        <option>Diabetes</option>
+                        <option>Respiratory Infection</option>
+                        <option>Hypertension</option>
+                        <option>Cancer</option>
+                        <option>Kidney Disease</option>
+                        <option>Gastroenteritis</option>
+                        <option>Fractures</option>
+                        <option>Stroke</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="rec-input">
+                    <label>Current Stock Level:</label>
+                    <input type="number" id="currentStockRec" placeholder="e.g., 100" min="0" value="100">
+                </div>
+                <button class="btn-recommend" onclick="getRecommendations()">Get Recommendations</button>
+            </div>
+            <div id="recResultsContainer"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 ArogyaPredict - Hospital Management System</p>
+            <p>Improving Healthcare Through Data-Driven Predictions</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
