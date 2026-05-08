@@ -54,7 +54,7 @@ ArogyaPredict/
 ### 1. Clone/Setup Project
 
 ```bash
-cd e:\BCA\Final\ArogyaPredict
+cd e:\Final\ArogyaPredict
 ```
 
 ### 2. Create Virtual Environment (Recommended)
