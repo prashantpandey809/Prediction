@@ -3,7 +3,7 @@
 ## 🔴 DO THIS RIGHT NOW
 
 ```
-cd E:\BCA\Final\ArogyaPredict
+cd E:Final\ArogyaPredict
 python setup_complete.py
 ```
 
