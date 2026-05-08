@@ -84,9 +84,9 @@ The following keys are configured in `.env`:
 
 | API              | Key                                        | Purpose                       |
 | ---------------- | ------------------------------------------ | ----------------------------- |
-| **OpenWeather**  | `413fb69e2131d708599a7ce339e630e7`         | Weather data (temp, humidity) |
-| **AQICN**        | `7e966d5083c3e1aa50aa28e4b369c2234c883b3b` | Air Quality Index             |
-| **Calendarific** | `Sa1OPrP0KN3x4G0BETGRp2muiCDaPWyl`         | Holidays & events             |
+| **OpenWeather**  | `                                `         | Weather data (temp, humidity) |
+| **AQICN**        | `                                       `  | Air Quality Index             |
+| **Calendarific** | `                                `         | Holidays & events             |
 
 ---
 
@@ -95,7 +95,7 @@ The following keys are configured in `.env`:
 ### **Step 1: Navigate to Project (2 seconds)**
 
 ```bash
-cd e:\BCA\Final\ArogyaPredict
+cd e:\Final\ArogyaPredict
 
 # Verify by checking these files exist:
 dir data/hospital_base_dataset.csv
@@ -326,9 +326,9 @@ Output: { "predicted_patients": 6, "confidence": 0.92, ... }
 ### **`.env` File** (API Keys & Settings)
 
 ```
-OPENWEATHER_API_KEY=413fb69e2131d708599a7ce339e630e7
-AQICN_API_KEY=7e966d5083c3e1aa50aa28e4b369c2234c883b3b
-CALENDARIFIC_API_KEY=Sa1OPrP0KN3x4G0BETGRp2muiCDaPWyl
+OPENWEATHER_API_KEY=
+AQICN_API_KEY=
+CALENDARIFIC_API_KEY=
 HOSPITAL_LAT=19.2183
 HOSPITAL_LON=72.9781
 HOSPITAL_COUNTRY=IN
